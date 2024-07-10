@@ -27,4 +27,10 @@ public class IoCTest {
 		LagouBean lagouBean = applicationContext.getBean(LagouBean.class);
 		System.out.println(lagouBean);//com.pyip.edu.LagouBean@6ed3f258
 	}
+	@Test
+	public void testAop() {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		LagouBean lagouBean = applicationContext.getBean(LagouBean.class);
+		lagouBean.print();
+	}
 }

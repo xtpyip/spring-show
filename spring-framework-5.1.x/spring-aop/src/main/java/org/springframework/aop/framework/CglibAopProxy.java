@@ -178,6 +178,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			validateClassIfNecessary(proxySuperClass, classLoader);
 
 			// Configure CGLIB Enhancer...
+			// 配置 Cglib 增强
 			Enhancer enhancer = createEnhancer();
 			if (classLoader != null) {
 				enhancer.setClassLoader(classLoader);

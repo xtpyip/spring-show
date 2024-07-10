@@ -68,6 +68,7 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 
 	private final boolean publicMethodsOnly;
 
+	// 注册解析器集合
 	private final Set<TransactionAnnotationParser> annotationParsers;
 
 

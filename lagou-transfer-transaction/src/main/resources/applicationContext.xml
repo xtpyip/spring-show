@@ -41,20 +41,20 @@
     </bean>
 
 
-   <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        &lt;!&ndash;定制事务细节，传播行为、隔离级别等&ndash;&gt;
-        <tx:attributes>
-            &lt;!&ndash;一般性配置&ndash;&gt;
-            <tx:method name="*" read-only="false" propagation="REQUIRED" isolation="DEFAULT" timeout="-1"/>
-            &lt;!&ndash;针对查询的覆盖性配置&ndash;&gt;
-            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
-        </tx:attributes>
-    </tx:advice>
+<!--   <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+<!--        &lt;!&ndash;定制事务细节，传播行为、隔离级别等&ndash;&gt;-->
+<!--        <tx:attributes>-->
+<!--            &lt;!&ndash;一般性配置&ndash;&gt;-->
+<!--            <tx:method name="*" read-only="false" propagation="REQUIRED" isolation="DEFAULT" timeout="-1"/>-->
+<!--            &lt;!&ndash;针对查询的覆盖性配置&ndash;&gt;-->
+<!--            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
 
-    <aop:config>
-        &lt;!&ndash;advice-ref指向增强=横切逻辑+方位&ndash;&gt;
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lagou.edu.service.impl.TransferServiceImpl.*(..))"/>
-    </aop:config>-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;advice-ref指向增强=横切逻辑+方位&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lagou.edu.service.impl.TransferServiceImpl.*(..))"/>-->
+<!--    </aop:config>&ndash;&gt;-->
 
     <!--声明式事务的注解驱动-->
     <tx:annotation-driven transaction-manager="transactionManager"/>

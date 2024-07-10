@@ -240,7 +240,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			String name, @Nullable Class<T> requiredType, @Nullable Object[] args, boolean typeCheckOnly)
 			throws BeansException {
 
-		String beanName = transformedBeanName(name);
+		String beanName = transformedBeanName(name);// FactoryBean生产的bean的话，是直接的beanId,若是factoryBean对象本身，要加个&
 		Object bean;
 
 		// Eagerly check singleton cache for manually registered singletons.
