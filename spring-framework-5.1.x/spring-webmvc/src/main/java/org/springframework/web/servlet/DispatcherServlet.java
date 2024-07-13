@@ -998,32 +998,32 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * @throws Exception in case of any kind of processing failure
 	 */
 	protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpServletRequest processedRequest = request;
-		HandlerExecutionChain mappedHandler = null;
-		boolean multipartRequestParsed = false;
+		HttpServletRequest processedRequest = request;// 获取request对象
+		HandlerExecutionChain mappedHandler = null; // 处理器执行链
+		boolean multipartRequestParsed = false; // 是否为文件上传
 
-		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
+		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request); // web的异步管理
 
 		try {
-			ModelAndView mv = null;
-			Exception dispatchException = null;
+			ModelAndView mv = null; // modelAndView对象
+			Exception dispatchException = null; // 执行器
 
 			try {
-				processedRequest = checkMultipart(request);
+				processedRequest = checkMultipart(request); // 先判断是否为文件上传
 				multipartRequestParsed = (processedRequest != request);
 
 				// Determine handler for the current request.
-				mappedHandler = getHandler(processedRequest);
+				mappedHandler = getHandler(processedRequest); // 获取映射处理器
 				if (mappedHandler == null) {
-					noHandlerFound(processedRequest, response);
+					noHandlerFound(processedRequest, response); // 报错，未找到匹配的
 					return;
 				}
 
 				// Determine handler adapter for the current request.
-				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
+				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler()); // 处理器适配器
 
 				// Process last-modified header, if supported by the handler.
-				String method = request.getMethod();
+				String method = request.getMethod(); // 获取请求方式 GET
 				boolean isGet = "GET".equals(method);
 				if (isGet || "HEAD".equals(method)) {
 					long lastModified = ha.getLastModified(request, mappedHandler.getHandler());
@@ -1037,14 +1037,14 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Actually invoke the handler.
-				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
+				mv = ha.handle(processedRequest, response, mappedHandler.getHandler()); // 执行处理器映射的方法
 
 				if (asyncManager.isConcurrentHandlingStarted()) {
 					return;
 				}
 
-				applyDefaultViewName(processedRequest, mv);
-				mappedHandler.applyPostHandle(processedRequest, response, mv);
+				applyDefaultViewName(processedRequest, mv); // 设置默认的jsp页面
+				mappedHandler.applyPostHandle(processedRequest, response, mv); // 执行拦截器的方法
 			}
 			catch (Exception ex) {
 				dispatchException = ex;
@@ -1054,7 +1054,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// making them available for @ExceptionHandler methods and other scenarios.
 				dispatchException = new NestedServletException("Handler dispatch failed", err);
 			}
-			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
+			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);// 处理分发的结果
 		}
 		catch (Exception ex) {
 			triggerAfterCompletion(processedRequest, response, mappedHandler, ex);

@@ -121,7 +121,7 @@ public class ServletInvocableHandlerMethod extends InvocableHandlerMethod {
 		Assert.state(this.returnValueHandlers != null, "No return value handlers");
 		try {
 			this.returnValueHandlers.handleReturnValue(
-					returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
+					returnValue, getReturnValueType(returnValue), mavContainer, webRequest); // 处理返回的值
 		}
 		catch (Exception ex) {
 			if (logger.isTraceEnabled()) {

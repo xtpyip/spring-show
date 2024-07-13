@@ -775,11 +775,11 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	protected ModelAndView handleInternal(HttpServletRequest request,
 			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
 
-		ModelAndView mav;
-		checkRequest(request);
+		ModelAndView mav; // modelAndView
+		checkRequest(request); // 检查校检
 
 		// Execute invokeHandlerMethod in synchronized block if required.
-		if (this.synchronizeOnSession) {
+		if (this.synchronizeOnSession) { // 是否需要加锁
 			HttpSession session = request.getSession(false);
 			if (session != null) {
 				Object mutex = WebUtils.getSessionMutex(session);
@@ -794,7 +794,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		}
 		else {
 			// No synchronization on session demanded at all...
-			mav = invokeHandlerMethod(request, response, handlerMethod);
+			mav = invokeHandlerMethod(request, response, handlerMethod);// 执行方法返回封装的ModelAndView对象
 		}
 
 		if (!response.containsHeader(HEADER_CACHE_CONTROL)) {
@@ -894,7 +894,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				return null;
 			}
 
-			return getModelAndView(mavContainer, modelFactory, webRequest);
+			return getModelAndView(mavContainer, modelFactory, webRequest); // 获取modelandview对象
 		}
 		finally {
 			webRequest.requestCompleted();
@@ -1014,7 +1014,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				RequestContextUtils.getOutputFlashMap(request).putAll(flashAttributes);
 			}
 		}
-		return mav;
+		return mav;// success,date:new Date();
 	}
 
 }
